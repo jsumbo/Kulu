@@ -1,30 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'auth/login_screen.dart';
-import 'home/home_screen.dart';
-import 'splashscreen/splash_screen.dart';
+import 'screens/splash_screen.dart';
+import 'screens/home_screen.dart';
+import 'screens/lessons_screen.dart';
+import 'screens/proverbs_poetry_screen.dart';
+import 'screens/culture_screen.dart';
+import 'screens/profile_screen.dart';
+import 'screens/auth_screen.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+void main() {
   runApp(KuluApp());
 }
 
 class KuluApp extends StatelessWidget {
-  const KuluApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Kulu App',
+      title: 'Kulu',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.deepPurple,
+        accentColor: Colors.orangeAccent,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       initialRoute: '/',
       routes: {
         '/': (context) => SplashScreen(),
-        '/login': (context) => LoginScreen(),
+        '/auth': (context) => AuthScreen(),
         '/home': (context) => HomeScreen(),
+        '/lessons': (context) => LessonsScreen(),
+        '/proverbs_poetry': (context) => ProverbsPoetryScreen(),
+        '/culture': (context) => CultureScreen(),
+        '/profile': (context) => ProfileScreen(),
       },
     );
   }
