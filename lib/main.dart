@@ -11,6 +11,8 @@ void main() async {
 }
 
 class KuluApp extends StatelessWidget {
+  const KuluApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

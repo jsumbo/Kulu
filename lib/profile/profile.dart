@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 class ProfileScreen extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  const ProfileScreen({super.key});
+
   void _signOut(BuildContext context) async {
     await _auth.signOut();
     Navigator.pushReplacementNamed(context, '/login');
@@ -19,13 +21,13 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Name: ${user?.email}', style: TextStyle(fontSize: 18)),
-            SizedBox(height: 20),
-            Text('Progress: 50%', style: TextStyle(fontSize: 18)), // Placeholder
-            SizedBox(height: 20),
+            Text('Name: ${user?.email}', style: const TextStyle(fontSize: 18)),
+            const SizedBox(height: 20),
+            const Text('Progress: 50%', style: TextStyle(fontSize: 18)), // Placeholder
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () => _signOut(context),
-              child: Text('Logout'),
+              child: const Text('Logout'),
             ),
           ],
         ),
