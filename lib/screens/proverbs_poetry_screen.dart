@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:art_screen_app/screens/art_screen.dart';
-// Import the Art Screen
+import 'package:provider/provider.dart'
+// import 'package:art_screen_app/screens/art_screen.dart'; / commented to fix compile error
+import 'settings_page.dart'; 
 
 class ProverbsPoetryScreen extends StatelessWidget {
   @override
@@ -55,10 +55,10 @@ class ProverbsPoetryScreen extends StatelessWidget {
             Spacer(),
             ElevatedButton(
               onPressed: () {
-                // Navigate to Art Screen
+                // Navigate to Settings Page
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ArtScreen()),
+                  MaterialPageRoute(builder: (context) => SettingsPage()),
                 );
               },
               child: Text(
@@ -80,18 +80,9 @@ class ProverbsPoetryScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              image,
-              width: 80,
-              height: 80,
-              fit: BoxFit.cover,
-            ),
-          ),
-          SizedBox(width: 16),
+          Image.asset(image, width: 100, height: 100, fit: BoxFit.cover),
+          const SizedBox(width: 10),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,13 +94,10 @@ class ProverbsPoetryScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 5),
                 Text(
                   description,
-                  style: GoogleFonts.poppins(
-                    fontSize: 14,
-                    color: Colors.black54,
-                  ),
+                  style: GoogleFonts.poppins(fontSize: 14),
                 ),
               ],
             ),
@@ -120,10 +108,6 @@ class ProverbsPoetryScreen extends StatelessWidget {
   }
 
   Widget _divider() {
-    return Divider(
-      color: Colors.black,
-      thickness: 1,
-    );
+    return const Divider(height: 20, thickness: 1);
   }
 }
-
