@@ -10,7 +10,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -26,10 +26,12 @@ dependencies:
   shared_preferences: ^2.0.6
   flutter_tts: ^3.2.2
   audioplayers: ^0.20.1
+  google_fonts: 4.0.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -42,7 +44,21 @@ flutter:
   uses-material-design: true
 
   # TODO// Add assets and uncomment this:
-  #assets:
+  assets:
+  - assets/reading_character.jpg
+  - assets/books.jpg
+  - assets/africa_map.png
+  - assets/african_mask.png
+  - assets/art1.jpg
+  - assets/art2.jpg
+  - assets/art3.jpg
+  - assets/art4.jpg
+  - assets/art5.jpg
+  - assets/african_mask.jpg
+  - assets/african.jpg
+  - assets/izoga.jpg
+  - assets/poem.jpg
+
     #- assets/kulu_logo.png
     #- assets/profile_pic.png
    # - assets/kente.png
