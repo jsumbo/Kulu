@@ -1,39 +1,22 @@
 import 'package:flutter/material.dart';
-import 'screens/welcome_screen.dart';
-import 'screens/home_screen.dart';
-import 'screens/lessons_screen.dart';
-import 'screens/proverbs_poetry_screen.dart';
-import 'screens/culture_screen.dart';
-import 'screens/profile_screen.dart';
-import 'screens/auth_screen.dart';
+import 'screens/welcome_screen.dart'; // Import your welcome screen
+import 'screens/signin_screen.dart';  // Import your sign-in screen
 
 void main() {
-  runApp(KuluApp());
+  runApp(MyApp());
 }
 
-class KuluApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Kulu',
+      title: 'Kulu Language App',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.deepPurple,
-          accentColor: Colors.orangeAccent,
-        ),
+        fontFamily: 'Poppins',  // Set Poppins as the default font
+        primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => SplashScreen(),
-        '/auth': (context) => AuthScreen(),
-        '/home': (context) => HomeScreen(),
-        '/lessons': (context) => LessonsScreen(),
-        '/proverbs_poetry': (context) => ProverbsPoetryScreen(),
-        '/culture': (context) => CultureScreen(),
-        '/profile': (context) => ProfileScreen(),
-      },
+      home: WelcomeScreen(),
     );
   }
 }
