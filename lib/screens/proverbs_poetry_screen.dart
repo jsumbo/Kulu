@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:art_screen_app/screens/art_screen.dart';
+import '/screens/art_screen.dart';
 // Import the Art Screen
 
 class ProverbsPoetryScreen extends StatelessWidget {
@@ -126,4 +125,3 @@ class ProverbsPoetryScreen extends StatelessWidget {
     );
   }
 }
-
