@@ -24,10 +24,6 @@ dependencies:
   shared_preferences: ^2.0.6
   flutter_tts: ^3.2.2
   audioplayers: ^0.20.1
-<<<<<<< HEAD
-=======
-  google_fonts: 4.0.4
->>>>>>> 42a4d4d461b1508963f2e8b2d630792d07c0e24f
 
 dev_dependencies:
   flutter_test:
