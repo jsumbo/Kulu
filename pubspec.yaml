@@ -42,7 +42,10 @@ flutter:
   uses-material-design: true
 
   # TODO// Add assets and uncomment this:
-  #assets:
+  assets:
+  - assets/reading_character.jpg
+  - assets/books.jpg
+
     #- assets/kulu_logo.png
     #- assets/profile_pic.png
    # - assets/kente.png
