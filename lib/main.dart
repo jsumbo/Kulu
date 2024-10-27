@@ -18,7 +18,10 @@ class KuluApp extends StatelessWidget {
       title: 'Kulu',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
-        accentColor: Colors.orangeAccent,
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.deepPurple,
+          accentColor: Colors.orangeAccent,
+        ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       initialRoute: '/',
