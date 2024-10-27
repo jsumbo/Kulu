@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart'
-// import 'package:art_screen_app/screens/art_screen.dart'; / commented to fix compile error
+import 'package:provider/provider.dart' // might remove if compile error exists
 import 'settings_page.dart'; 
 
 class ProverbsPoetryScreen extends StatelessWidget {
