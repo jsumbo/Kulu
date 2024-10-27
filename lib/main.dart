@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/welcome_screen.dart'; // Import your welcome screen
-import 'screens/signin_screen.dart';  // Import your sign-in screen
+import 'screens/create_account_screen.dart';  // Import your sign-in screen
 
 void main() {
   runApp(MyApp());

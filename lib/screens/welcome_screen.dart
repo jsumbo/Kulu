@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'signin_screen.dart'; // Import the sign-in screen
+import 'create_account_screen.dart'; // Import the create account screen
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -63,7 +63,7 @@ class WelcomeScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => SignInScreen()),
+                          MaterialPageRoute(builder: (context) => CreateAccountScreen()),
                         );
                       },
                       child: Text(
