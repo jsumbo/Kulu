@@ -45,6 +45,8 @@ flutter:
   assets:
   - assets/reading_character.jpg
   - assets/books.jpg
+  - assets/africa_map.png
+  - assets/african_mask.png
 
     #- assets/kulu_logo.png
     #- assets/profile_pic.png
