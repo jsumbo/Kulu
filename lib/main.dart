@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/splash_screen.dart';
+import 'screens/welcome_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/lessons_screen.dart';
 import 'screens/proverbs_poetry_screen.dart';
