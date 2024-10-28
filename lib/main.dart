@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kulu_app/screens/homescreen.dart';
+import 'package:provider/provider.dart';
+import '/provider/auth_provider.dart';
 import 'screens/welcome_screen.dart';
 import 'screens/create_account_screen.dart';
 import 'screens/login_screen.dart';
@@ -9,7 +12,15 @@ import 'screens/edit_profile_page.dart';
 import 'screens/proverbs_poetry_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+            create: (_) => AuthProvider()), // Add AuthProvider
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -27,6 +38,7 @@ class MyApp extends StatelessWidget {
         "/": (context) => WelcomeScreen(),
         "/signup": (context) => CreateAccountScreen(),
         "/login": (context) => LoginScreen(),
+        "/home": (context) => HomeScreen(),
         "/lessons": (context) => LanguageSelectionScreen(),
         "/art": (context) => ArtScreen(),
         "/settings": (context) => SettingsPage(),
