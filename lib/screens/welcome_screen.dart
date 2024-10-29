@@ -53,8 +53,8 @@ class WelcomeScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Container(
-                    width: 70, // Width of the button (makes it round)
-                    height: 70, // Height of the button (makes it round)
+                    width: 80, // Width of the button (makes it round)
+                    height: 80, // Height of the button (makes it round)
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         shape: CircleBorder(), // Makes the button round
@@ -69,7 +69,7 @@ class WelcomeScreen extends StatelessWidget {
                       child: Text(
                         "Start",
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 16,
                           fontFamily: 'Poppins', // Use Poppins for the button text
                           color: Colors.white,
                         ),
