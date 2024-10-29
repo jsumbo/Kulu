@@ -98,7 +98,10 @@ class LanguageButton extends StatelessWidget {
         height: 50,
         child: OutlinedButton(
           onPressed: () {
-            // Handle button press here
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => destination),
+            );
           },
           style: OutlinedButton.styleFrom(
             side: const BorderSide(width: 2, color: Colors.black),
