@@ -69,7 +69,7 @@ class WelcomeScreen extends StatelessWidget {
                       child: Text(
                         "Start",
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           fontFamily: 'Poppins', // Use Poppins for the button text
                           color: Colors.white,
                         ),
