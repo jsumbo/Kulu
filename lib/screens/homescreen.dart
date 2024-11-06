@@ -151,7 +151,7 @@ class FeatureButton extends StatelessWidget {
           );
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
