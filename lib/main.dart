@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kulu_app/screens/homescreen.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +13,21 @@ import 'screens/settings_page.dart';
 import 'screens/edit_profile_page.dart';
 import 'screens/proverbs_poetry_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+        options: const FirebaseOptions(
+            apiKey: "AIzaSyA7nkztXr54TPnnkqx_udMG8weNfHNX-50",
+            authDomain: "kulu-f495f.firebaseapp.com",
+            projectId: "kulu-f495f",
+            storageBucket: "kulu-f495f.firebasestorage.app",
+            messagingSenderId: "345848029681",
+            appId: "1:345848029681:web:fe818b87e2d2933d692450",
+            measurementId: "G-ZPYWWQP8VM"));
+  } else {
+    await Firebase.initializeApp();
+  }
   runApp(
     MultiProvider(
       providers: [
