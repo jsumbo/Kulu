@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "345848029681",
+    "project_id": "kulu-f495f",
+    "storage_bucket": "kulu-f495f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345848029681:android:bbde7391ae542fad692450",
+        "android_client_info": {
+          "package_name": "com.kulu.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDM_osdns3ofJjzxx-CVAyl-I33SiVacPA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
