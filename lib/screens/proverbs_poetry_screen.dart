@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'settings_page.dart';
 
 class ProverbsPoetryScreen extends StatelessWidget {
   const ProverbsPoetryScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,53 +22,41 @@ class ProverbsPoetryScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            _buildSection(
-              image: 'assets/african_mask.jpg',
-              title: 'Tinndi e Jime',
-              description:
-                  'Step into the world of wise sayings and soulful Fulani poetry',
-            ),
-            _divider(),
-            _buildSection(
-              image: 'assets/african.jpg',
-              title: 'Methali na Mashairi',
-              description:
-                  'Embark on a journey through timeless wisdom and lyrical Swahili verses!',
-            ),
-            _divider(),
-            _buildSection(
-              image: 'assets/izoga.jpg',
-              title: 'Izaga nezinkondlo',
-              description:
-                  'Feel the heartbeat of Africa with powerful Zulu proverbs and poetry',
-            ),
-            _divider(),
-            _buildSection(
-              image: 'assets/poem.jpg',
-              title: 'Talk Talk an Poem',
-              description:
-                  'Catch the vibe of deep words and sweet poems in Koloqua style!',
-            ),
-            Spacer(),
-            ElevatedButton(
-              onPressed: () {
-                // Navigate to Settings Page
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SettingsPage()),
-                );
-              },
-              child: Text(
-                'Go to Settings',
-                style: GoogleFonts.poppins(fontSize: 16),
-              ),
-            ),
-          ],
-        ),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('proverbs_poetry').snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          }
+
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return const Center(child: Text('No data found.'));
+          }
+
+          final documents = snapshot.data!.docs;
+
+          return ListView.builder(
+            padding: const EdgeInsets.all(16.0),
+            itemCount: documents.length,
+            itemBuilder: (context, index) {
+              final doc = documents[index];
+              return Column(
+                children: [
+                  _buildSection(
+                    image: doc['image'],
+                    title: doc['title'],
+                    description: doc['description'],
+                  ),
+                  if (index < documents.length - 1) _divider(),
+                ],
+              );
+            },
+          );
+        },
       ),
     );
   }
