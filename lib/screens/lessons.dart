@@ -5,7 +5,7 @@ import '/screens/swahili.dart';
 import '/screens/zulu.dart';
 
 class LanguageSelectionScreen extends StatelessWidget {
-  const LanguageSelectionScreen({Key? key}) : super(key: key);
+  const LanguageSelectionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
