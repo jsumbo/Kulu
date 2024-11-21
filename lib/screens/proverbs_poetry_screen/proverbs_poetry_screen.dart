@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'settings_page.dart';
 
 class ProverbsPoetryScreen extends StatelessWidget {
   const ProverbsPoetryScreen({super.key});
@@ -23,7 +22,9 @@ class ProverbsPoetryScreen extends StatelessWidget {
         ),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('proverbs_poetry').snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('proverbs_poetry')
+            .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
