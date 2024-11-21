@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'create_account_screen.dart'; // Import the create account screen
 
 class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +53,7 @@ class WelcomeScreen extends StatelessWidget {
                 alignment: Alignment.bottomRight,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Container(
+                  child: SizedBox(
                     width: 80, // Width of the button (makes it round)
                     height: 80, // Height of the button (makes it round)
                     child: ElevatedButton(

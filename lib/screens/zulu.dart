@@ -4,10 +4,10 @@ class ZuluScreen extends StatefulWidget {
   const ZuluScreen({super.key});
 
   @override
-  _ZuluScreenState createState() => _ZuluScreenState();
+  ZuluScreenState createState() => ZuluScreenState();
 }
 
-class _ZuluScreenState extends State<ZuluScreen> {
+class ZuluScreenState extends State<ZuluScreen> {
   final TextEditingController _controller = TextEditingController();
   String feedback = '';
   final String correctAnswer = 'incwadi'; // Example answer for "book" in Zulu

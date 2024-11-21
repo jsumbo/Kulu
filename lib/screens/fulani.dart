@@ -4,10 +4,10 @@ class FulaniScreen extends StatefulWidget {
   const FulaniScreen({super.key});
 
   @override
-  _FulaniScreenState createState() => _FulaniScreenState();
+  FulaniScreenState createState() => FulaniScreenState();
 }
 
-class _FulaniScreenState extends State<FulaniScreen> {
+class FulaniScreenState extends State<FulaniScreen> {
   final TextEditingController _controller = TextEditingController();
   String feedback = '';
   final String correctAnswer = 'deftere'; // Example answer for "book" in Fulani
