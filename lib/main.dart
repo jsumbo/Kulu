@@ -11,7 +11,7 @@ import 'screens/lessons.dart';
 import 'screens/art_screen.dart';
 import 'screens/settings_page.dart';
 import 'screens/edit_profile_page.dart';
-import 'screens/proverbs_poetry_screen.dart';
+import 'screens/proverbs_poetry_screen/proverbs_poetry_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
