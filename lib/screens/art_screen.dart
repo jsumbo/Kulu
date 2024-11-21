@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
+import '/screens/settings_page.dart';
+import '/screens/edit_profile_page.dart';
 
 class ArtScreen extends StatelessWidget {
+  const ArtScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.person, color: Colors.black), // Profile Icon
-          onPressed: () {
-            // Handle profile action
-          },
-        ),
         actions: [
           IconButton(
-            icon: Icon(Icons.notifications, color: Colors.black), // Bell Icon
+            icon: Icon(Icons.person, color: Colors.black), // Profile Icon
             onPressed: () {
-              // Handle notifications
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => EditProfilePage()),
+              );
             },
           ),
           IconButton(
             icon: Icon(Icons.settings, color: Colors.black), // Settings Icon
             onPressed: () {
-              // Handle settings
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SettingsPage()),
+              );
             },
           ),
         ],

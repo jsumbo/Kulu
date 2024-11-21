@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kulu_app/screens/homescreen.dart';
 import '/provider/auth_provider.dart';
 import '/screens/create_account_screen.dart';
 import 'package:provider/provider.dart';
@@ -32,7 +33,12 @@ class _LoginScreenState extends State<LoginScreen> {
             _buildPasswordField(authProvider),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -99,4 +105,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-

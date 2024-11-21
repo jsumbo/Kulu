@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import '/screens/fulani.dart';
+import '/screens/koloqua.dart';
+import '/screens/swahili.dart';
+import '/screens/zulu.dart';
 
 class LanguageSelectionScreen extends StatelessWidget {
   const LanguageSelectionScreen({super.key});
@@ -6,13 +10,16 @@ class LanguageSelectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 40), // Adjust to give some space from the top
+            const SizedBox(
+                height: 40), // Adjust to give some space from the top
 
             // Title Text
             const Text(
@@ -53,10 +60,19 @@ class LanguageSelectionScreen extends StatelessWidget {
             Expanded(
               child: Column(
                 children: const [
-                  LanguageButton(title: "Koloqua"),
-                  LanguageButton(title: "Zulu"),
-                  LanguageButton(title: "Swahili"),
-                  LanguageButton(title: "Fulani"),
+                  LanguageButton(
+                    title: "Koloqua",
+                    destination: KoloquaScreen(),
+                  ),
+                  LanguageButton(
+                    title: "Zulu",
+                    destination: ZuluScreen(),
+                  ),
+                  LanguageButton(
+                    title: "Swahili",
+                    destination: SwahiliScreen(),
+                  ),
+                  LanguageButton(title: "Fulani", destination: FulaniScreen()),
                 ],
               ),
             ),
@@ -69,8 +85,11 @@ class LanguageSelectionScreen extends StatelessWidget {
 
 class LanguageButton extends StatelessWidget {
   final String title;
+  final Widget destination;
 
-  const LanguageButton({Key? key, required this.title}) : super(key: key);
+  const LanguageButton(
+      {Key? key, required this.title, required this.destination})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +100,10 @@ class LanguageButton extends StatelessWidget {
         height: 50,
         child: OutlinedButton(
           onPressed: () {
-            // Handle button press here
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => destination),
+            );
           },
           style: OutlinedButton.styleFrom(
             side: const BorderSide(width: 2, color: Colors.black),

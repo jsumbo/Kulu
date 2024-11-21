@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kulu_app/screens/settings_page.dart';
+import '/screens/lessons.dart';
+import '/screens/proverbs_poetry_screen.dart';
+import '/screens/art_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,20 +18,19 @@ class MyApp extends StatelessWidget {
     // MaterialApp which is the base that provides material design and manages navigation.
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomeScreen(), // The first screen that is displayed.
+      home: HomeScreen(), // The first screen that is displayed.
     );
   }
 }
 
 // This is the main welcome screen of the app.
-class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
 
@@ -64,7 +67,8 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 20), // Adds vertical space between text and image.
+            const SizedBox(
+                height: 20), // Adds vertical space between text and image.
 
             // Image Widget: Displays an image from assets.
             Image.asset(
@@ -73,31 +77,44 @@ class WelcomeScreen extends StatelessWidget {
               fit: BoxFit.contain,
             ),
 
-            const SizedBox(height: 30), // Adds space between the image and the buttons.
+            const SizedBox(
+                height: 30), // Adds space between the image and the buttons.
 
             // Expanded widget to make the button area take up the remaining space.
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-
                   // First Row of buttons.
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: const [
-                      FeatureButton(title: "Lessons"), // Button for Lessons.
-                      FeatureButton(title: "Proverbs & Poetry"), // Button for Proverbs & Poetry.
+                      FeatureButton(
+                        title: "Lessons",
+                        destination: LanguageSelectionScreen(),
+                      ), // Button for Lessons.
+                      FeatureButton(
+                        title: "Proverbs & Poetry",
+                        destination: ProverbsPoetryScreen(),
+                      ), // Button for Proverbs & Poetry.
                     ],
                   ),
 
-                  const SizedBox(height: 16), // Adds space between rows of buttons.
+                  const SizedBox(
+                      height: 16), // Adds space between rows of buttons.
 
                   // Second Row of buttons.
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: const [
-                      FeatureButton(title: "Culture"), // Button for Culture.
-                      FeatureButton(title: "... More!"), // Button for additional options.
+                      FeatureButton(
+                        title: "Culture",
+                        destination: ArtScreen(),
+                      ), // Button for Culture.
+                      FeatureButton(
+                          title: "... More!",
+                          destination:
+                              SettingsPage()), // Button for additional options.
                     ],
                   ),
                 ],
@@ -113,8 +130,11 @@ class WelcomeScreen extends StatelessWidget {
 // A reusable button widget for the feature buttons on the welcome screen.
 class FeatureButton extends StatelessWidget {
   final String title; // The title displayed on the button.
+  final Widget destination;
 
-  const FeatureButton({Key? key, required this.title}) : super(key: key);
+  const FeatureButton(
+      {Key? key, required this.title, required this.destination})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -125,9 +145,13 @@ class FeatureButton extends StatelessWidget {
       // ElevatedButton is used to create the button.
       child: ElevatedButton(
         onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => destination),
+          );
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
