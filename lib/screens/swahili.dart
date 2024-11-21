@@ -4,10 +4,10 @@ class SwahiliScreen extends StatefulWidget {
   const SwahiliScreen({super.key});
 
   @override
-  _SwahiliScreenState createState() => _SwahiliScreenState();
+  SwahiliScreenState createState() => SwahiliScreenState();
 }
 
-class _SwahiliScreenState extends State<SwahiliScreen> {
+class SwahiliScreenState extends State<SwahiliScreen> {
   final TextEditingController _controller = TextEditingController();
   String feedback = '';
   final String correctAnswer = 'kitabu'; // Example answer for "book" in Swahili

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class EditProfilePage extends StatelessWidget {
-  const EditProfilePage({Key? key}) : super(key: key);
+  const EditProfilePage({super.key});
 
   Widget _buildTextField({
     required String label,

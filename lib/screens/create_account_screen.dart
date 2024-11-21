@@ -7,10 +7,10 @@ class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({super.key});
 
   @override
-  _CreateAccountScreenState createState() => _CreateAccountScreenState();
+  CreateAccountScreenState createState() => CreateAccountScreenState();
 }
 
-class _CreateAccountScreenState extends State<CreateAccountScreen> {
+class CreateAccountScreenState extends State<CreateAccountScreen> {
   bool _termsAccepted = false;
 
   @override

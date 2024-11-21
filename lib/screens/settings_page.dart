@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'edit_profile_page.dart'; 
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+  const SettingsPage({super.key});
 
   Widget _buildListTile({
     required String title,

@@ -4,10 +4,10 @@ class KoloquaScreen extends StatefulWidget {
   const KoloquaScreen({super.key});
 
   @override
-  _KoloquaScreenState createState() => _KoloquaScreenState();
+  KoloquaScreenState createState() => KoloquaScreenState();
 }
 
-class _KoloquaScreenState extends State<KoloquaScreen> {
+class KoloquaScreenState extends State<KoloquaScreen> {
   final TextEditingController _controller = TextEditingController();
   String feedback = '';
   final String correctAnswer = 'book'; // Example answer for "book" in Koloqua
