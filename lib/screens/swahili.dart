@@ -13,7 +13,6 @@ class SwahiliScreenState extends State<SwahiliScreen> {
   String feedback = '';
   String correctAnswer = '';
   String question = '';
-  String imageUrl = '';
 
   @override
   void initState() {
@@ -29,7 +28,6 @@ class SwahiliScreenState extends State<SwahiliScreen> {
     setState(() {
       question = snapshot['question'];
       correctAnswer = snapshot['correctAnswer'];
-      imageUrl = snapshot['image'];
     });
   }
 
@@ -56,8 +54,8 @@ class SwahiliScreenState extends State<SwahiliScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Image.network(
-              imageUrl,
+            Image.asset(
+              'assets/book.png',
               height: 200,
               width: 200,
             ),
