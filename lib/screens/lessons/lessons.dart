@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '/screens/fulani.dart';
-import '/screens/koloqua.dart';
-import '/screens/swahili.dart';
-import '/screens/zulu.dart';
+import '/screens/lessons/fulani.dart';
+import '/screens/lessons/koloqua.dart';
+import '/screens/lessons/swahili.dart';
+import '/screens/lessons/zulu.dart';
 
 class LanguageSelectionScreen extends StatelessWidget {
   const LanguageSelectionScreen({super.key});

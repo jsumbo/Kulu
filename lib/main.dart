@@ -7,7 +7,7 @@ import '/provider/auth_provider.dart';
 import 'screens/welcome_screen.dart';
 import 'screens/create_account_screen.dart';
 import 'screens/login_screen.dart';
-import 'screens/lessons.dart';
+import 'screens/lessons/lessons.dart';
 import 'screens/art_screen.dart';
 import 'screens/settings_page.dart';
 import 'screens/edit_profile_page.dart';
