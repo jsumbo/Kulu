@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SwahiliScreen extends StatefulWidget {
   const SwahiliScreen({super.key});
@@ -10,7 +11,27 @@ class SwahiliScreen extends StatefulWidget {
 class SwahiliScreenState extends State<SwahiliScreen> {
   final TextEditingController _controller = TextEditingController();
   String feedback = '';
-  final String correctAnswer = 'kitabu'; // Example answer for "book" in Swahili
+  String correctAnswer = '';
+  String question = '';
+  String imageUrl = '';
+
+  @override
+  void initState() {
+    super.initState();
+    fetchLesson();
+  }
+
+  void fetchLesson() async {
+    DocumentSnapshot snapshot = await FirebaseFirestore.instance
+        .collection('lessons')
+        .doc('lesson1')
+        .get();
+    setState(() {
+      question = snapshot['question'];
+      correctAnswer = snapshot['correctAnswer'];
+      imageUrl = snapshot['image'];
+    });
+  }
 
   void checkAnswer() {
     setState(() {
@@ -35,14 +56,14 @@ class SwahiliScreenState extends State<SwahiliScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Image.asset(
-              'assets/book.png',
+            Image.network(
+              imageUrl,
               height: 200,
               width: 200,
             ),
             const SizedBox(height: 20),
-            const Text(
-              'Hiki kinaitwa nini?',
+            Text(
+              question,
               style: TextStyle(fontSize: 24),
               textAlign: TextAlign.center,
             ),
