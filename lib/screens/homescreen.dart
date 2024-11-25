@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kulu_app/screens/settings_page.dart';
-import '/screens/lessons.dart';
+import '/screens/lessons/lessons.dart';
 import '/screens/proverbs_poetry_screen/proverbs_poetry_screen.dart';
 import '/screens/art_screen.dart';
 
