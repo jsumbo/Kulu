@@ -22,7 +22,7 @@ class PoetryScreen extends StatefulWidget {
 }
 
 class _PoetryScreenState extends State<PoetryScreen> {
-  // List of longer poems in Fulani with their English translations
+  // List of poems in Fulani with their English translations
   final List<Map<String, String>> poems = [
     {
       "fulani": """Ngol waɗiri ko jawdi ndon,  
@@ -71,7 +71,7 @@ Our unity shines as bright as gold."""
 
   void showNextPoem() {
     setState(() {
-      currentIndex = (currentIndex + 1) % poems.length; // Cycle through poems
+      currentIndex = (currentIndex + 1) % poems.length;
     });
   }
 
@@ -100,7 +100,7 @@ Our unity shines as bright as gold."""
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 80), // Adjusted space before title
+                const SizedBox(height: 80),
                 // Fulani Poem Box
                 Expanded(
                   flex: 4,
@@ -111,20 +111,20 @@ Our unity shines as bright as gold."""
                       border: Border.all(color: Colors.black, width: 2),
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    child: Scrollbar(  // Wrap the SingleChildScrollView with Scrollbar
-                      thumbVisibility: true,  // Keeps the scrollbar always visible
-                      thickness: 8.0,  // Thickness of the scrollbar
-                      radius: Radius.circular(8.0),  // Rounded corners
+                    child: Scrollbar( 
+                      thumbVisibility: true,
+                      thickness: 8.0, 
+                      radius: Radius.circular(8.0), 
                       child: SingleChildScrollView(
                         child: Text(
                           poems[currentIndex]["fulani"]!,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: screenWidth * 0.05, // Adjust font size to screen width
+                            fontSize: screenWidth * 0.05,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Lobster', // Fancy and bold font for Fulani poems
-                            color: Colors.black, // Black for emphasis
-                            letterSpacing: 1.5, // Increased letter spacing
+                            fontFamily: 'Lobster',
+                            color: Colors.black,
+                            letterSpacing: 1.5,
                           ),
                         ),
                       ),
@@ -142,19 +142,19 @@ Our unity shines as bright as gold."""
                       border: Border.all(color: Colors.black, width: 2),
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    child: Scrollbar(  // Wrap the SingleChildScrollView with Scrollbar
-                      thumbVisibility: true,  // Keeps the scrollbar always visible
-                      thickness: 8.0,  // Thickness of the scrollbar
-                      radius: Radius.circular(8.0),  // Rounded corners
+                    child: Scrollbar(
+                      thumbVisibility: true, 
+                      thickness: 8.0,
+                      radius: Radius.circular(8.0),
                       child: SingleChildScrollView(
                         child: Text(
                           poems[currentIndex]["english"]!,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: screenWidth * 0.045, // Adjust font size to screen width
+                            fontSize: screenWidth * 0.045,
                             fontWeight: FontWeight.w600,
-                            fontFamily: 'Georgia', // Elegant font for English translation
-                            color: Colors.grey[800], // Dark gray for better visibility
+                            fontFamily: 'Georgia', 
+                            color: Colors.grey[800],
                           ),
                         ),
                       ),
@@ -168,7 +168,7 @@ Our unity shines as bright as gold."""
                   child: const Text(
                     "Next",
                     style: TextStyle(
-                      color: Colors.white, // White text for better visibility
+                      color: Colors.white, 
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),
@@ -192,16 +192,16 @@ Our unity shines as bright as gold."""
             child: Text(
               "Tinndi e Jime",
               style: TextStyle(
-                fontSize: screenWidth * 0.08, // Adjusted font size for title
+                fontSize: screenWidth * 0.08, 
                 fontWeight: FontWeight.bold,
-                fontFamily: 'Lobster', // Stylish font
-                color: Color(0xFFFF5678), // Pink color for title
+                fontFamily: 'Lobster', 
+                color: Color(0xFFFF5678), 
                 letterSpacing: 2.5,
                 shadows: [
                   Shadow(
                     offset: Offset(4, 4),
                     blurRadius: 8,
-                    color: Colors.grey.withOpacity(0.7), // Shadow for depth
+                    color: Colors.grey.withOpacity(0.7), 
                   ),
                 ],
               ),
