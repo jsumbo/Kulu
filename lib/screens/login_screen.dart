@@ -12,6 +12,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
+
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
@@ -28,17 +29,12 @@ class LoginScreenState extends State<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _buildCustomInputField('Email', 'helloworld@gmail.com'),
+            _buildCustomInputField(
+                'Email', 'helloworld@gmail.com', _emailController),
             const SizedBox(height: 10),
             _buildPasswordField(authProvider),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                );
-              },
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -49,7 +45,9 @@ class LoginScreenState extends State<LoginScreen> {
               child: const Text('Log in'),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                // TODO: Implement forgot password functionality
+              },
               child: const Text('Forgot Password?'),
             ),
             TextButton(
@@ -68,7 +66,8 @@ class LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildCustomInputField(String label, String hint) {
+  Widget _buildCustomInputField(
+      String label, String hint, TextEditingController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -76,6 +75,7 @@ class LoginScreenState extends State<LoginScreen> {
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
         const SizedBox(height: 5),
         TextField(
+          controller: controller,
           decoration: InputDecoration(
             hintText: hint,
             border: OutlineInputBorder(
@@ -89,6 +89,7 @@ class LoginScreenState extends State<LoginScreen> {
 
   Widget _buildPasswordField(AuthProvider authProvider) {
     return TextField(
+      controller: _passwordController,
       obscureText: !authProvider.isPasswordVisible,
       decoration: InputDecoration(
         hintText: '••••••••',
