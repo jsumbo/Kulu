@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:kulu_app/screens/homescreen.dart';
 import '/provider/auth_provider.dart';
 import '/screens/create_account_screen.dart';
@@ -13,33 +12,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-
-  void _login() async {
-    try {
-      final email = _emailController.text.trim();
-      final password = _passwordController.text.trim();
-
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Login successful!')),
-      );
-
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.toString()}')),
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +35,6 @@ class LoginScreenState extends State<LoginScreen> {
             _buildPasswordField(authProvider),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: _login,
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -135,4 +106,3 @@ class LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-

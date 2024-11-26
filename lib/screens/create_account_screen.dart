@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import '/provider/auth_provider.dart';
 import '/screens/login_screen.dart';
 import 'package:provider/provider.dart';
@@ -162,4 +161,3 @@ class CreateAccountScreenState extends State<CreateAccountScreen> {
     );
   }
 }
-
