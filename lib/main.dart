@@ -1,9 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:kulu_app/screens/homescreen.dart';
 import 'package:provider/provider.dart';
-import '/provider/auth_provider.dart';
+import '/provider/auth_provider.dart' as local;
 import 'screens/welcome_screen.dart';
 import 'screens/create_account_screen.dart';
 import 'screens/login_screen.dart';
@@ -31,16 +32,16 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-            create: (_) => AuthProvider()), // Add AuthProvider
+        ChangeNotifierProvider(create: (_) => local.KuluAuthProvider()),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -50,17 +51,43 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: "/",
+      home: AuthWrapper(),
       routes: {
-        "/": (context) => WelcomeScreen(),
-        "/signup": (context) => CreateAccountScreen(),
-        "/login": (context) => LoginScreen(),
-        "/home": (context) => HomeScreen(),
-        "/lessons": (context) => LanguageSelectionScreen(),
-        "/art": (context) => ArtScreen(),
-        "/settings": (context) => SettingsPage(),
-        "/edit_profile": (context) => EditProfilePage(),
-        "/proverbs_poetry": (context) => ProverbsPoetryScreen(),
+        "/signup": (context) => const CreateAccountScreen(),
+        "/login": (context) => const LoginScreen(),
+        "/home": (context) => const HomeScreen(),
+        "/lessons": (context) => const LanguageSelectionScreen(),
+        "/art": (context) => const ArtScreen(),
+        "/settings": (context) => const SettingsPage(),
+        "/edit_profile": (context) => const EditProfilePage(),
+        "/proverbs_poetry": (context) => const ProverbsPoetryScreen(),
+      },
+    );
+  }
+}
+
+class AuthWrapper extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.active) {
+          User? user = snapshot.data;
+
+          if (user == null) {
+            return const WelcomeScreen();
+          } else {
+            return const HomeScreen();
+          }
+        }
+
+        // Show loading indicator while checking authentication state
+        return const Scaffold(
+          body: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
       },
     );
   }

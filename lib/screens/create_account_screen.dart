@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/provider/auth_provider.dart';
+import '/provider/auth_provider.dart' as local;
 import '/screens/login_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -18,45 +18,46 @@ class CreateAccountScreenState extends State<CreateAccountScreen> {
 
   void _createAccount() async {
     if (!_termsAccepted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please accept the terms and conditions')),
-      );
+      _showErrorSnackBar('Please accept the terms and conditions');
       return;
     }
 
-    try {
-      final email = _emailController.text.trim();
-      final password = _passwordController.text.trim();
+    final authProvider = context.read<local.KuluAuthProvider>();
+    final email = _emailController.text.trim();
+    final password = _passwordController.text.trim();
 
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+    final user = await authProvider.signUpWithEmailAndPassword(email, password);
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Account created successfully!')),
-      );
-
+    if (user != null) {
+      _showSuccessSnackBar('Account created successfully!');
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => LoginScreen()),
+        MaterialPageRoute(builder: (context) => const LoginScreen()),
       );
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.toString()}')),
-      );
+    } else {
+      _showErrorSnackBar('Error creating account');
     }
+  }
+
+  void _showErrorSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message), backgroundColor: Colors.red),
+    );
+  }
+
+  void _showSuccessSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message), backgroundColor: Colors.green),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = context.watch<AuthProvider>();
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Create Account'),
         actions: const [
-          Icon(Icons.star, color: Colors.black), // Two-armed star
+          Icon(Icons.star, color: Colors.black),
         ],
       ),
       body: Padding(
@@ -69,12 +70,12 @@ class CreateAccountScreenState extends State<CreateAccountScreen> {
             const SizedBox(height: 10),
             _buildCustomInputField('Email', 'Your Email', _emailController),
             const SizedBox(height: 10),
-            _buildPasswordField(authProvider),
+            _buildPasswordField(local.KuluAuthProvider()),
             const SizedBox(height: 10),
             Row(
               children: [
                 Checkbox(
-                  shape: const CircleBorder(), // Circular checkbox
+                  shape: const CircleBorder(),
                   value: _termsAccepted,
                   onChanged: (newValue) {
                     setState(() {
@@ -92,8 +93,7 @@ class CreateAccountScreenState extends State<CreateAccountScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                minimumSize: const Size(
-                    200, 50), // Rectangular button with smooth corners
+                minimumSize: const Size(200, 50),
                 backgroundColor: Colors.black,
               ),
               child: const Text('Create Account'),
@@ -102,7 +102,7 @@ class CreateAccountScreenState extends State<CreateAccountScreen> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
                 );
               },
               child: const Text('Already have an account? Log in'),
@@ -113,6 +113,7 @@ class CreateAccountScreenState extends State<CreateAccountScreen> {
     );
   }
 
+  // Existing input field methods remain the same
   Widget _buildCustomInputField(
       String label, String hint, TextEditingController controller) {
     return Column(
@@ -134,7 +135,7 @@ class CreateAccountScreenState extends State<CreateAccountScreen> {
     );
   }
 
-  Widget _buildPasswordField(AuthProvider authProvider) {
+  Widget _buildPasswordField(local.KuluAuthProvider authProvider) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
