@@ -1,16 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/providers/auth_provider.dart';
-import 'package:flutter_application_1/screens/create_account_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:kulu_app/screens/homescreen.dart';
+import '/provider/auth_provider.dart';
+import '/screens/create_account_screen.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  LoginScreenState createState() => LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class LoginScreenState extends State<LoginScreen> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  void _login() async {
+    try {
+      final email = _emailController.text.trim();
+      final password = _passwordController.text.trim();
+
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Login successful!')),
+      );
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: ${e.toString()}')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
@@ -27,12 +57,13 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _buildCustomInputField('Email', 'helloworld@gmail.com'),
+            _buildCustomInputField(
+                'Email', 'helloworld@gmail.com', _emailController),
             const SizedBox(height: 10),
             _buildPasswordField(authProvider),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: _login,
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -43,7 +74,9 @@ class _LoginScreenState extends State<LoginScreen> {
               child: const Text('Log in'),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                // TODO: Implement forgot password functionality
+              },
               child: const Text('Forgot Password?'),
             ),
             TextButton(
@@ -62,7 +95,8 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildCustomInputField(String label, String hint) {
+  Widget _buildCustomInputField(
+      String label, String hint, TextEditingController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -70,6 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
         const SizedBox(height: 5),
         TextField(
+          controller: controller,
           decoration: InputDecoration(
             hintText: hint,
             border: OutlineInputBorder(
@@ -83,6 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildPasswordField(AuthProvider authProvider) {
     return TextField(
+      controller: _passwordController,
       obscureText: !authProvider.isPasswordVisible,
       decoration: InputDecoration(
         hintText: '••••••••',

@@ -1,21 +1,57 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/providers/auth_provider.dart';
-import 'package:flutter_application_1/screens/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '/provider/auth_provider.dart';
+import '/screens/login_screen.dart';
 import 'package:provider/provider.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({super.key});
 
   @override
-  _CreateAccountScreenState createState() => _CreateAccountScreenState();
+  CreateAccountScreenState createState() => CreateAccountScreenState();
 }
 
-class _CreateAccountScreenState extends State<CreateAccountScreen> {
+class CreateAccountScreenState extends State<CreateAccountScreen> {
   bool _termsAccepted = false;
+  final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  void _createAccount() async {
+    if (!_termsAccepted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please accept the terms and conditions')),
+      );
+      return;
+    }
+
+    try {
+      final email = _emailController.text.trim();
+      final password = _passwordController.text.trim();
+
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Account created successfully!')),
+      );
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: ${e.toString()}')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    final authProvider = context.watch<AuthProvider>();
 
     return Scaffold(
       appBar: AppBar(
@@ -29,9 +65,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _buildCustomInputField('Username', 'Your Username'),
+            _buildCustomInputField(
+                'Username', 'Your Username', _usernameController),
             const SizedBox(height: 10),
-            _buildCustomInputField('Email', 'Your Email'),
+            _buildCustomInputField('Email', 'Your Email', _emailController),
             const SizedBox(height: 10),
             _buildPasswordField(authProvider),
             const SizedBox(height: 10),
@@ -51,7 +88,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: _termsAccepted ? () {} : null,
+              onPressed: _termsAccepted ? _createAccount : null,
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -77,7 +114,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     );
   }
 
-  Widget _buildCustomInputField(String label, String hint) {
+  Widget _buildCustomInputField(
+      String label, String hint, TextEditingController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -85,6 +123,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
         const SizedBox(height: 5),
         TextField(
+          controller: controller,
           decoration: InputDecoration(
             hintText: hint,
             border: OutlineInputBorder(
@@ -104,6 +143,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
         const SizedBox(height: 5),
         TextField(
+          controller: _passwordController,
           obscureText: !authProvider.isPasswordVisible,
           decoration: InputDecoration(
             hintText: '••••••••',
