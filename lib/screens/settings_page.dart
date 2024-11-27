@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'edit_profile_page.dart'; 
+import 'edit_profile_page.dart';
+import 'subscription_page.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -53,6 +54,17 @@ class SettingsPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => EditProfilePage()),
+              );
+            },
+          ),
+          _buildListTile(
+            title: 'Subscription',
+            icon: Icons.subscriptions,
+            onTap: () {
+              // Navigate to Subscription Page
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SubscriptionPage()),
               );
             },
           ),
