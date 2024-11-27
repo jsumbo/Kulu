@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '/screens/lessons/fulani.dart';
-import '/screens/lessons/koloqua.dart';
-import '/screens/lessons/swahili.dart';
-import '/screens/lessons/zulu.dart';
+import 'zulu_lesson.dart';
+import 'swahili_lesson.dart';
+import 'fulani_lesson.dart';
+import 'koloqua_lesson.dart'; // Import lesson screens here
 
 class LanguageSelectionScreen extends StatelessWidget {
   const LanguageSelectionScreen({super.key});
@@ -18,8 +18,7 @@ class LanguageSelectionScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(
-                height: 40), // Adjust to give some space from the top
+            const SizedBox(height: 40), // Adjust to give some space from the top
 
             // Title Text
             const Text(
@@ -59,20 +58,23 @@ class LanguageSelectionScreen extends StatelessWidget {
             // Language Buttons
             Expanded(
               child: Column(
-                children: const [
+                children: [
                   LanguageButton(
                     title: "Koloqua",
-                    destination: KoloquaScreen(),
+                    destination: const KoloquaLessonsScreen(),
                   ),
                   LanguageButton(
                     title: "Zulu",
-                    destination: ZuluScreen(),
+                    destination: const ZuluLessonsScreen(),
                   ),
                   LanguageButton(
                     title: "Swahili",
-                    destination: SwahiliScreen(),
+                    destination: const SwahiliLessonsScreen(),
                   ),
-                  LanguageButton(title: "Fulani", destination: FulaniScreen()),
+                  LanguageButton(
+                    title: "Fulani",
+                    destination: const FulaniLessonsScreen(),
+                  ),
                 ],
               ),
             ),
@@ -87,9 +89,11 @@ class LanguageButton extends StatelessWidget {
   final String title;
   final Widget destination;
 
-  const LanguageButton(
-      {Key? key, required this.title, required this.destination})
-      : super(key: key);
+  const LanguageButton({
+    Key? key,
+    required this.title,
+    required this.destination,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
