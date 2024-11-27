@@ -23,16 +23,14 @@ Ensure you have the following installed on your machine:
 ### Step by Step instructions:
 Clone the Repository:
 
-    git clone https://github.com/m-mwangi/linear_regression_model.git
+    git clone https://github.com/jsumbo/kulu.git
+    
 
-   
-Navigate to the Project Directory:
-
-cd insurance_prediction_app
 Install Dependencies:
+  - flutter pub get
 
-flutter pub get
 Run the App:
+    
+    flutter run
 
-flutter run
 This will launch the app on the emulator or device.
