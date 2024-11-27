@@ -1,27 +1,11 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+class KoloquaPoetryScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: PoetryScreen(),
-    );
-  }
+  _KoloquaPoetryScreenState createState() => _KoloquaPoetryScreenState();
 }
 
-class PoetryScreen extends StatefulWidget {
-  @override
-  _PoetryScreenState createState() => _PoetryScreenState();
-}
-
-class _PoetryScreenState extends State<PoetryScreen> {
+class _KoloquaPoetryScreenState extends State<KoloquaPoetryScreen> {
   // List of poems in koloqua translated to english
   final List<Map<String, String>> poems = [
     {
@@ -99,8 +83,8 @@ Together we stand, it will get better."""
       body: Scrollbar(
         controller: _scrollController,
         thumbVisibility: true,
-        thickness: 8.0, 
-        radius: Radius.circular(8), 
+        thickness: 8.0,
+        radius: Radius.circular(8),
         child: SingleChildScrollView(
           controller: _scrollController,
           child: Padding(
@@ -112,7 +96,7 @@ Together we stand, it will get better."""
                 Text(
                   "Talk Talk an Poem",
                   style: TextStyle(
-                    fontSize: screenWidth * 0.08, 
+                    fontSize: screenWidth * 0.08,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Lobster',
                     color: Color(0xFFFF5678),
@@ -140,11 +124,11 @@ Together we stand, it will get better."""
                     poems[currentIndex]["koloqua"]!,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: screenWidth * 0.05, 
+                      fontSize: screenWidth * 0.05,
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'Lobster', 
-                      color: Colors.black, 
-                      letterSpacing: 1.5, 
+                      fontFamily: 'Lobster',
+                      color: Colors.black,
+                      letterSpacing: 1.5,
                     ),
                   ),
                 ),
@@ -161,7 +145,7 @@ Together we stand, it will get better."""
                     poems[currentIndex]["english"]!,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: screenWidth * 0.045, 
+                      fontSize: screenWidth * 0.045,
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Georgia',
                       color: Colors.grey[800],
@@ -182,7 +166,8 @@ Together we stand, it will get better."""
                   ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
-                    padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16.0, horizontal: 32.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
@@ -197,5 +182,3 @@ Together we stand, it will get better."""
     );
   }
 }
-
-

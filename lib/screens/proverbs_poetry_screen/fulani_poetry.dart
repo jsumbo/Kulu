@@ -1,27 +1,11 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+class FulaniPoetryScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: PoetryScreen(),
-    );
-  }
+  _FulaniPoetryScreenState createState() => _FulaniPoetryScreenState();
 }
 
-class PoetryScreen extends StatefulWidget {
-  @override
-  _PoetryScreenState createState() => _PoetryScreenState();
-}
-
-class _PoetryScreenState extends State<PoetryScreen> {
+class _FulaniPoetryScreenState extends State<FulaniPoetryScreen> {
   // List of poems in Fulani with their English translations
   final List<Map<String, String>> poems = [
     {
@@ -111,10 +95,10 @@ Our unity shines as bright as gold."""
                       border: Border.all(color: Colors.black, width: 2),
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    child: Scrollbar( 
+                    child: Scrollbar(
                       thumbVisibility: true,
-                      thickness: 8.0, 
-                      radius: Radius.circular(8.0), 
+                      thickness: 8.0,
+                      radius: Radius.circular(8.0),
                       child: SingleChildScrollView(
                         child: Text(
                           poems[currentIndex]["fulani"]!,
@@ -143,7 +127,7 @@ Our unity shines as bright as gold."""
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: Scrollbar(
-                      thumbVisibility: true, 
+                      thumbVisibility: true,
                       thickness: 8.0,
                       radius: Radius.circular(8.0),
                       child: SingleChildScrollView(
@@ -153,7 +137,7 @@ Our unity shines as bright as gold."""
                           style: TextStyle(
                             fontSize: screenWidth * 0.045,
                             fontWeight: FontWeight.w600,
-                            fontFamily: 'Georgia', 
+                            fontFamily: 'Georgia',
                             color: Colors.grey[800],
                           ),
                         ),
@@ -168,14 +152,15 @@ Our unity shines as bright as gold."""
                   child: const Text(
                     "Next",
                     style: TextStyle(
-                      color: Colors.white, 
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
-                    padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16.0, horizontal: 32.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
@@ -192,16 +177,16 @@ Our unity shines as bright as gold."""
             child: Text(
               "Tinndi e Jime",
               style: TextStyle(
-                fontSize: screenWidth * 0.08, 
+                fontSize: screenWidth * 0.08,
                 fontWeight: FontWeight.bold,
-                fontFamily: 'Lobster', 
-                color: Color(0xFFFF5678), 
+                fontFamily: 'Lobster',
+                color: Color(0xFFFF5678),
                 letterSpacing: 2.5,
                 shadows: [
                   Shadow(
                     offset: Offset(4, 4),
                     blurRadius: 8,
-                    color: Colors.grey.withOpacity(0.7), 
+                    color: Colors.grey.withOpacity(0.7),
                   ),
                 ],
               ),
