@@ -6,3 +6,9 @@ Kulu is a mobile application designed to enhance language learning, specifically
 ## GCGO's Addressed:
 Educational and cultural by the preservation of African languages and traditions through a modern accessible tool. 
 
+## Features:
+ - User Registration and Authentication: Users can sign up using email accounts.
+ - Offers both free and premium user accounts with different access levels.
+ - Personalized dashboard that tracks each user's progress.
+ Language lessons and quizzes: Structured language lessons for Swahili, Zulu, Koloqua, and Fulani, including quizzes to test understanding of knowledge.
+ - Cultural Content- Includes African proverbs, poetry, and art page to allow users to learn both the language and cultural nuances.
