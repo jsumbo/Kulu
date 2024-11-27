@@ -25,9 +25,9 @@ Clone the Repository:
 
     git clone https://github.com/jsumbo/kulu.git
     
-
 Install Dependencies:
-  - flutter pub get
+    
+    flutter pub get
 
 Run the App:
     
