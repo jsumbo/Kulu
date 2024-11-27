@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.kuluapp"
+    namespace = "com.kulu.app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
